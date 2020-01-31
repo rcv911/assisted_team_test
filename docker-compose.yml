@@ -1,0 +1,13 @@
+version: "3"
+services:
+  test_api:
+    container_name: test_api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "80:9999"
+    volumes:
+      - ${PWD}/config/config.toml:/config/config.toml
+    logging:
+      driver: syslog
