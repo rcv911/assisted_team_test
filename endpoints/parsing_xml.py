@@ -3,7 +3,7 @@ from aiohttp.web import Request
 from aiohttp.web_response import Response
 from aiohttp_rest_api import AioHTTPRestEndpoint
 from aiohttp_rest_api.responses import respond_with_json
-from xml_parser import parse_xml
+from app_methods import get_flight_tickets
 import logging
 
 log = logging.getLogger(__name__)
@@ -30,6 +30,6 @@ class ParseEndpoint(AioHTTPRestEndpoint):
         need_return = request.query.get('need_return', 'true')
         action = request.query.get('action', 'cheap')
 
-        data = await parse_xml(need_return=need_return, action=action)
+        data = await get_flight_tickets(need_return=need_return, action=action)
 
         return respond_with_json(data)

@@ -1,8 +1,7 @@
 from aiohttp import web
 from aiohttp.web import Application
 from aiohttp_rest_api.loader import \
-    load_and_connect_all_endpoints_from_folder, get_swagger_documentation
-# from aiohttp_rest_api.swagger import setup_swagger
+    load_and_connect_all_endpoints_from_folder
 import logging
 import pathlib
 import pytoml as toml
@@ -49,9 +48,6 @@ def init_app(config) -> Application:
     )
 
     log.debug(app['config'])
-
-    # setup_swagger(app, swagger_info=get_swagger_documentation())
-
     return app
 
 
