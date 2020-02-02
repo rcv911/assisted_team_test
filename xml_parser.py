@@ -13,7 +13,8 @@ def etree_to_dict(elem) -> dict:
     Конвертация элемента xml.etree иерархии с его детьми в словарь
 
     :param
-        * *elem* (``<class 'xml.etree.ElementTree.Element'>``) - элемент иерархии
+        * *elem* (``<class 'xml.etree.ElementTree.Element'>``) - элемент
+        иерархии
 
     :rtype: (``dict``)
     :return: все данные текущего узла иерархии завернутые в словарь
@@ -35,14 +36,22 @@ def etree_to_dict(elem) -> dict:
         text = elem.text.strip()
         if children or elem.attrib:
             if text:
-              elem_dict[elem.tag]['text'] = text
+                elem_dict[elem.tag]['text'] = text
         else:
             elem_dict[elem.tag] = text
     return elem_dict
 
 
 async def parse_xml_to_dict(**kwargs) -> dict:
-    """"""
+    """
+    Парсинг данных по полётам xml файла в словарь
+
+    :param kwargs:
+         * *need_return* (``str``) -- наличие обратного маршрута
+
+    :rtype: (``dict``)
+    :return: данные о полётах
+    """
     filenames = {
         '1': 'RS_Via-3.xml',
         '2': 'RS_ViaOW.xml'
@@ -92,8 +101,17 @@ async def parse_xml_to_dict(**kwargs) -> dict:
     log.info(f'PARSING DATA  {time.time() - start} sec')
     return data
 
+
 async def parse_xml(**kwargs) -> dict:
-    """"""
+    """
+    Парсинг тегов и атрибутов xml файла в словарь
+
+    :param kwargs:
+        * *need_return* (``str``) -- наличие обратного маршрута
+
+    :rtype: (``dict``)
+    :return: теги и атрибуты xml файла
+    """
     filenames = {
         '1': 'RS_Via-3.xml',
         '2': 'RS_ViaOW.xml'

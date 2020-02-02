@@ -20,11 +20,11 @@ class DifferenceEndpoint(AioHTTPRestEndpoint):
 
     async def get(self, request: Request) -> Response:
         """
-        GET метод /v1/diff получение различия между двумя
+        GET метод /v1/diff получение различия тегов и атрибутов между двумя
         xml файлами
 
         :param
-            * *request* (``Request``) -- запрос
+            * *request* (``Request``) -- http запрос
 
         :rtype: (``Response``)
         :return: ответ на запрос в формате JSON
@@ -37,9 +37,12 @@ class DifferenceEndpoint(AioHTTPRestEndpoint):
         diff = dict()
         diff['tags'] = data_file1['tags'] - data_file2['tags']
 
-        intersect = [item for item in data_file1['attributes'] if item in data_file2['attributes']]
-        sym_diff = [item for item in itertools.chain(data_file1['attributes'],
-                                                     data_file2['attributes']) if item not in intersect]
+        intersect = [item for item in data_file1['attributes']
+                     if item in data_file2['attributes']]
+        sym_diff = [item for item in
+                    itertools.chain(data_file1['attributes'],
+                                    data_file2['attributes'])
+                    if item not in intersect]
 
         # визуальная эстетика
         attrib = dict()

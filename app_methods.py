@@ -35,7 +35,8 @@ async def get_travel_info(input_data) -> (str, int, bool):
     return time_info, total_time, is_direct_flight
 
 
-async def get_travel_time(departure_timestamp, arrival_timestamp) -> (str, int):
+async def get_travel_time(departure_timestamp, arrival_timestamp) -> (str,
+                                                                      int):
     """
     Получение общего времени затраченного на полёт в текстовом и числовом
     представлении. Числовое необходимо для сортировки
@@ -93,29 +94,35 @@ async def sort_data(data, action, filters, need_return) -> dict:
     reverse = False
 
     if action == 'cheap':
-        sort_filter = lambda x: (x[1][filter_1], x[1][filter_2], x[1][filter_3])
+        sort_filter = lambda x: (x[1][filter_1], x[1][filter_2],
+                                 x[1][filter_3])
     if action == 'expensive':
         reverse = True
         if need_return in check_return:
-            sort_filter = lambda x: (x[1][filter_1], -x[1][filter_2], -x[1][filter_3])
+            sort_filter = lambda x: (x[1][filter_1], -x[1][filter_2],
+                                     -x[1][filter_3])
         else:
-            sort_filter = lambda x: (x[1][filter_1], -x[1][filter_2], x[1][filter_3])
+            sort_filter = lambda x: (x[1][filter_1], -x[1][filter_2],
+                                     x[1][filter_3])
     elif action == 'fast':
         filter_1 = filters.get('onward')
         filter_2 = filters.get('return')
         filter_3 = filters.get('price')
-        sort_filter = lambda x: (x[1][filter_1], x[1][filter_2], x[1][filter_3])
+        sort_filter = lambda x: (x[1][filter_1], x[1][filter_2],
+                                 x[1][filter_3])
     elif action == 'slow':
         filter_1 = filters.get('onward')
         filter_2 = filters.get('return')
         filter_3 = filters.get('price')
         reverse = True
-        sort_filter = lambda x: (x[1][filter_1], x[1][filter_2], -x[1][filter_3])
+        sort_filter = lambda x: (x[1][filter_1], x[1][filter_2],
+                                 -x[1][filter_3])
     elif action == 'optimal':
         filter_1 = filters.get('onward')
         filter_2 = filters.get('return')
         filter_3 = filters.get('price')
-        sort_filter = lambda x: (x[1][filter_1], x[1][filter_2], x[1][filter_3])
+        sort_filter = lambda x: (x[1][filter_1], x[1][filter_2],
+                                 x[1][filter_3])
 
     sorted_data = {k: v for k, v in sorted(data.items(),
                                            key=sort_filter,
@@ -139,7 +146,8 @@ async def get_flight_tickets(**kwargs) -> dict:
 
     for flights in data:
 
-        onward_flight = data[flights]['OnwardPricedItinerary']['Flights']['Flight']
+        onward_flight = data[flights]['OnwardPricedItinerary']['Flights'][
+            'Flight']
         onward_time_info, onward_total_time, onward_is_direct_flight = \
             await get_travel_info(onward_flight)
 
@@ -147,7 +155,8 @@ async def get_flight_tickets(**kwargs) -> dict:
         return_is_direct_flight = None
         return_total_time = None
         if data[flights].get('ReturnPricedItinerary'):
-            return_flight = data[flights]['ReturnPricedItinerary']['Flights']['Flight']
+            return_flight = data[flights]['ReturnPricedItinerary']['Flights'][
+                'Flight']
             return_time_info, return_total_time, return_is_direct_flight = \
                 await get_travel_info(return_flight)
 

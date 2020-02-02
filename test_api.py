@@ -83,4 +83,3 @@ if __name__ == '__main__':
         main(args.config)
     else:
         parser.print_help()
-

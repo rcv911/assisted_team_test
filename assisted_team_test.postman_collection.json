@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "78678167-e398-4786-a7da-b36826e5aef1",
+		"name": "assisted_team_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "самый дешёвый билет",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/v1/parse?need_return=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"v1",
+						"parse"
+					],
+					"query": [
+						{
+							"key": "need_return",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "самый быстрый билет",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/v1/parse?need_return=true&action=fast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"v1",
+						"parse"
+					],
+					"query": [
+						{
+							"key": "need_return",
+							"value": "true"
+						},
+						{
+							"key": "action",
+							"value": "fast"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "самый дорогой билет",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/v1/parse?need_return=true&action=expensive",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"v1",
+						"parse"
+					],
+					"query": [
+						{
+							"key": "need_return",
+							"value": "true"
+						},
+						{
+							"key": "action",
+							"value": "expensive"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "самый медленный билет",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/v1/parse?need_return=false&action=slow",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"v1",
+						"parse"
+					],
+					"query": [
+						{
+							"key": "need_return",
+							"value": "false"
+						},
+						{
+							"key": "action",
+							"value": "slow"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "оптимальный билет",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/v1/parse?need_return=true&action=optimal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"v1",
+						"parse"
+					],
+					"query": [
+						{
+							"key": "need_return",
+							"value": "true"
+						},
+						{
+							"key": "action",
+							"value": "optimal"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "симметричная разница между файлами",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/v1/diff",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"v1",
+						"diff"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

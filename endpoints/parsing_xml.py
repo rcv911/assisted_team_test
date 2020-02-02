@@ -22,7 +22,7 @@ class ParseEndpoint(AioHTTPRestEndpoint):
         GET метод /v1/parse получение выборки данных о полётах
 
         :param
-            * *request* (``Request``) -- запрос
+            * *request* (``Request``) -- http запрос
 
         :rtype: (``Response``)
         :return: ответ на запрос в формате JSON
