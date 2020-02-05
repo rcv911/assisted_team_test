@@ -11,11 +11,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/v1/parse?need_return=true",
+					"raw": "http://localhost:/v1/parse?need_return=false",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"localhost:"
 					],
+					"port": "",
 					"path": [
 						"v1",
 						"parse"
@@ -23,7 +24,7 @@
 					"query": [
 						{
 							"key": "need_return",
-							"value": "true"
+							"value": "false"
 						}
 					]
 				}
@@ -160,6 +161,31 @@
 					"path": [
 						"v1",
 						"diff"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "различия между файлами",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/v1/onward_diff?option=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"v1",
+						"onward_diff"
+					],
+					"query": [
+						{
+							"key": "option",
+							"value": "1"
+						}
 					]
 				}
 			},

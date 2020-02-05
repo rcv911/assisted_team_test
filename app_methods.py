@@ -7,7 +7,7 @@ from xml_parser import parse_xml_to_dict
 log = logging.getLogger(__name__)
 
 
-async def get_travel_info(input_data) -> (str, int, bool):
+async def get_travel_info(input_data: list) -> (str, int, bool):
     """
     Получение информаии о полёте
 
@@ -35,8 +35,8 @@ async def get_travel_info(input_data) -> (str, int, bool):
     return time_info, total_time, is_direct_flight
 
 
-async def get_travel_time(departure_timestamp, arrival_timestamp) -> (str,
-                                                                      int):
+async def get_travel_time(departure_timestamp: str,
+                          arrival_timestamp: str) -> (str, int):
     """
     Получение общего времени затраченного на полёт в текстовом и числовом
     представлении. Числовое необходимо для сортировки
@@ -62,7 +62,8 @@ async def get_travel_time(departure_timestamp, arrival_timestamp) -> (str,
     return time_info, total_time
 
 
-async def sort_data(data, action, filters, need_return) -> dict:
+async def sort_data(data: dict, action: str, filters: dict,
+                    need_return: str) -> dict:
     """
     Отсортировать данные по признакам - цена, время.
     По умолчанию сортировка показывает по возрастанию цены
@@ -80,7 +81,7 @@ async def sort_data(data, action, filters, need_return) -> dict:
     :param
         * *filters* (``dict``) -- статический фильтр метода
     :param
-        * *need_return* (``bool``) -- наличие обратного перелета
+        * *need_return* (``str``) -- наличие обратного перелета
 
     :rtype: (``dict``)
     :return: отсортированные данные

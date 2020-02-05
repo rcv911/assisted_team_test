@@ -24,4 +24,4 @@ VOLUME ["/config/config.toml"]
 
 WORKDIR /app
 
-ENTRYPOINT ["python", "test_api.py", "-c", "/config/config.toml"]
+ENTRYPOINT ["python", "api.py", "-c", "/config/config.toml"]

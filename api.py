@@ -12,7 +12,7 @@ PACKAGE_NAME = 'app'
 log = logging.getLogger(__name__)
 
 
-def load_config(config_path) -> dict:
+def load_config(config_path: str) -> dict:
     """
     Загрузка конфигурации приложения
 
@@ -27,7 +27,7 @@ def load_config(config_path) -> dict:
     return conf
 
 
-def init_app(config) -> Application:
+def init_app(config: dict) -> Application:
     """
     Инициализация web приложения
 
@@ -51,7 +51,7 @@ def init_app(config) -> Application:
     return app
 
 
-def main(config_path) -> None:
+def main(config_path: str):
     """
     Запуск REST API
 

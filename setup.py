@@ -3,7 +3,7 @@ from os.path import join, dirname
 
 setup(
     name='assisted_team_test',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/rcv911/assisted_team_test.git',
     install_requires=[
         'aiohttp',
