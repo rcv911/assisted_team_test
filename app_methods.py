@@ -7,7 +7,7 @@ from xml_parser import parse_xml_to_dict
 log = logging.getLogger(__name__)
 
 
-async def get_travel_info(input_data: list) -> (str, int, bool):
+async def get_travel_info(input_data: (list, dict)) -> (str, int, bool):
     """
     Получение информаии о полёте
 

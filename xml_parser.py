@@ -8,7 +8,7 @@ import logging
 log = logging.getLogger(__name__)
 
 
-def etree_to_dict(elem) -> dict:
+def etree_to_dict(elem: ET.Element) -> dict:
     """
     Конвертация элемента xml.etree иерархии с его детьми в словарь
 
@@ -185,18 +185,15 @@ async def diff_parse_xml(file_key: str) -> dict:
     start = time.time()
 
     count = 0
+    key = ''
     for elem in list(root.iter('OnwardPricedItinerary')):
         elem_dict = etree_to_dict(elem)
         tickets = elem_dict['OnwardPricedItinerary']['Flights']['Flight']
         onward_ticket = None
-        # is_direct_flight = True
         if isinstance(tickets, list):
 
             onward_ticket = next((x for x in tickets if x.get('Source') ==
                                   source), None)
-
-            # is_direct_flight = False
-
             for el in tickets:
                 carrier_info = el.pop('Carrier')
                 el.update(carrier_info)
@@ -217,14 +214,6 @@ async def diff_parse_xml(file_key: str) -> dict:
             data[key] = []
 
         data[key].append(tickets)
-
-        # if is_direct_flight:
-        #     data[key].append(tickets)
-        #     count += 1
-        # else:
-        #     data[key].extend(tickets)
-        #     count += len(tickets)
-
         elem.clear()
     root.clear()
 
