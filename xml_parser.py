@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import asyncio
 import xml.etree.ElementTree as ET
 import os
 import time
@@ -6,6 +7,24 @@ from collections import defaultdict
 import logging
 
 log = logging.getLogger(__name__)
+
+
+async def get_etree_to_dict(loop, elem: ET.Element) -> dict:
+    """
+    Обертка для заворачивания синхронной функции etree_to_dict в асинхронную
+
+    :param
+        * *loop* (``<class 'asyncio'>``) -- текущий event loop
+    :param
+        * *elem* (``<class 'xml.etree.ElementTree.Element'>``) -- элемент
+        иерархии
+
+    :rtype: (``dict``)
+    :return: данные текущего узла иерархии завернутые в словарь
+    """
+    future = loop.run_in_executor(None, etree_to_dict, elem)
+    response = await future
+    return response
 
 
 def etree_to_dict(elem: ET.Element) -> dict:
@@ -184,10 +203,15 @@ async def diff_parse_xml(file_key: str) -> dict:
     data = dict()
     start = time.time()
 
+    loop = asyncio.get_event_loop()
+
     count = 0
     key = ''
-    for elem in list(root.iter('OnwardPricedItinerary')):
-        elem_dict = etree_to_dict(elem)
+    for elem in root.iter('OnwardPricedItinerary'):
+
+        # elem_dict = etree_to_dict(elem)
+        elem_dict = await get_etree_to_dict(loop, elem)
+
         tickets = elem_dict['OnwardPricedItinerary']['Flights']['Flight']
         onward_ticket = None
         if isinstance(tickets, list):
